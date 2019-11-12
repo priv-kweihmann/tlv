@@ -1,5 +1,10 @@
 # tlv
 
+![Build status](https://github.com/priv-kweihmann/tlv/workflows/Build/badge.svg)
+[![PyPI version](https://badge.fury.io/py/tlv.svg)](https://badge.fury.io/py/tlv)
+[![Python version](https://img.shields.io/pypi/pyversions/tlv)](https://img.shields.io/pypi/pyversions/tlv)
+[![Downloads](https://img.shields.io/pypi/dm/tlv)](https://img.shields.io/pypi/dm/tlv)
+
 Too less variation - A tool to discover code duplication in various languages
 
 ## Purpose
@@ -62,12 +67,12 @@ be bogus.
 Output will be written to stdout.
 There are 2 possible finding types
 
- * Duplicate - The code is exactly the same
- * TooLessVariation - The code is the same, when removing all token types specified by --wildcard_token
+* Duplicate - The code is exactly the same
+* TooLessVariation - The code is the same, when removing all token types specified by --wildcard_token
 
 ### Output example
 
-```
+```shell
 /someplace/busybox/modutils/modutils.c:9:0:[TooLessVariation]:Block till 16:0 is nearly the same as in ../modprobe-small.c from 29:0 till 36:0
 >>> #include <sys/syscall.h>
 >>> 
@@ -125,7 +130,7 @@ if you don't want to see the code itself, pass the **--nodetails** option
 
 ## Further reading
 
- * [Pygments](http://pygments.org/)
+* [Pygments](http://pygments.org/)
 
 ## Bugs & Contribution
 
