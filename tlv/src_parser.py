@@ -1,15 +1,17 @@
-import sys
-import os
-
-from copy import deepcopy
-from pygments import lexers
-from pygments import token
-from pygments.util import ClassNotFound
-from difflib import SequenceMatcher
-from itertools import permutations, chain
 import multiprocessing as mp
-from tlv.cls_ast import TLVAst, TLVFinding
-from tlv.helper import debug, die
+import os
+from copy import deepcopy
+from difflib import SequenceMatcher
+from itertools import permutations
+
+from pygments import lexers
+from pygments.util import ClassNotFound
+
+from tlv.cls_ast import TLVAst
+from tlv.cls_ast import TLVFinding
+from tlv.helper import debug
+from tlv.helper import die
+
 
 def parse(args):
     res = []
@@ -35,8 +37,8 @@ def parse(args):
                 res.append(_ast)
                 for x in _lexer.get_tokens(content):
                     _type, _value = x
-                    ## TODO: If last object was same type and of ??? -> skip it
-                    ## -> modify last element and add one of the current type
+                    # TODO: If last object was same type and of ??? -> skip it
+                    # -> modify last element and add one of the current type
                     if str(_type) in args.wildcard_token:
                         _ast.Processed.append((_type, ""))
                     else:
@@ -46,10 +48,13 @@ def parse(args):
                 continue
     return res
 
+
 def __evaluate(args, first, second):
     findings = []
-    debug(args, "Comparing {}<>{}".format(os.path.basename(first.Filename), os.path.basename(second.Filename)))
-    m = SequenceMatcher(None, first.Processed, second.Processed).get_matching_blocks()
+    debug(args, "Comparing {}<>{}".format(os.path.basename(
+        first.Filename), os.path.basename(second.Filename)))
+    m = SequenceMatcher(None, first.Processed,
+                        second.Processed).get_matching_blocks()
     for _m in m:
         _id = TLVFinding.Validate(args, first, second, _m)
         if _id:
@@ -57,18 +62,21 @@ def __evaluate(args, first, second):
             findings.append(TLVFinding(second, first, _m, _id))
     return findings
 
+
 def validate(args, _list):
     perms = permutations([x for x in _list], 2)
     pool = mp.Pool(processes=args.jobs)
-    results = [pool.apply(__evaluate, args=(args, first, second)) for first, second in perms]
-    ## append one time every file compared against it self
-    ## by cutting the content into half
+    results = [pool.apply(__evaluate, args=(args, first, second))
+               for first, second in perms]
+    # append one time every file compared against it self
+    # by cutting the content into half
     for x in _list:
         _x1 = deepcopy(x)
         _x2 = deepcopy(x)
         chop_point = int(len(_x1.Raw) / 2)
         if chop_point > 0:
-            _line_offset = TLVFinding.get_text(_x1, 0, chop_point).count(os.linesep)
+            _line_offset = TLVFinding.get_text(
+                _x1, 0, chop_point).count(os.linesep)
             _x1.Raw = _x1.Raw[0: chop_point]
             _x1.Processed = _x1.Processed[0: chop_point]
             _x2.Raw = _x2.Raw[chop_point:]

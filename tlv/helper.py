@@ -1,8 +1,10 @@
 import sys
 
+
 def debug(args, msg):
     if args.verbose:
         print(msg)
+
 
 def die(code, msg=None):
     if msg:
