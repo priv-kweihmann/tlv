@@ -10,10 +10,8 @@ Too less variation - A tool to discover code duplication in various languages
 ## Purpose
 
 Code duplication are hard to track across many files.
-There are tools existing like [CPD](https://pmd.github.io/latest/pmd_userdocs_cpd.html) (from PMD) which are doing a great job, but 
-they require JAVA (or even some more obscure language) to run.
-So I decided to write a small tool which uses [Pygments](http://pygments.org/) and python [difflib](https://docs.python.org/3/library/difflib.html) to 
-catch code duplications for many languages as possible
+There are tools existing like [CPD](https://pmd.github.io/latest/pmd_userdocs_cpd.html) (from PMD) which are doing a great job, but they require JAVA (or even some more obscure language) to run.
+So I decided to write a small tool which uses [Pygments](http://pygments.org/) and python [difflib](https://docs.python.org/3/library/difflib.html) to catch code duplications for many languages as possible
 
 ## Requirements
 
@@ -22,9 +20,20 @@ catch code duplications for many languages as possible
 
 ## Installation
 
-```shell
-pip install tlv
+### PyPi
+
+simply run
+
+```sh
+pip3 install tlv
 ```
+
+### From source
+
+* Install the needed requirements by running ```pip3 install Pygments```
+* git clone this repository
+* cd to \<clone folder\>
+* run ```sudo ./build.sh```
 
 ## Usage
 
@@ -58,9 +67,7 @@ By default tool guesses the content type by the filename, if that doesn't work f
 ### Specify a lexer
 
 You can use a specific lexer by running the tool with the **--lexer=** option.
-When doing this all input files are processed by the specified lexer.
-So when using this option you should ensure that all passed files are of the specified file, else the results might 
-be bogus.
+When doing this all input files are processed by the specified lexer, you have to ensure that all passed files are of the specified file, else the results might be bogus.
 
 ## Output
 
