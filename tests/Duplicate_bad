@@ -1,0 +1,9 @@
+#!/bin/sh
+TESTFILE_1="${TESTPATH}/files/test_file_1.c"
+TESTFILE_2="${TESTPATH}/files/test_3.sh"
+TEST_EXTRA_OPT="--nodetails"
+TESTID="Duplicate"
+TESTOCC="0"
+[ $(tlv ${TEST_EXTRA_OPT} ${TESTFILE_1} ${TESTFILE_2} 2>&1 | grep "\[${TESTID}\]" | wc -l) = "${TESTOCC}" ] && exit 0;
+echo "Test for ${0} failed"
+exit 1
