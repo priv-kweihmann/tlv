@@ -65,9 +65,10 @@ def __evaluate(args, first, second):
 
 def validate(args, _list):
     perms = permutations([x for x in _list], 2)
-    pool = mp.Pool(processes=args.jobs)
-    results = [pool.apply(__evaluate, args=(args, first, second))
-               for first, second in perms]
+    result = []
+    with mp.Pool(processes=args.jobs) as pool:
+        results = [pool.apply(__evaluate, args=(args, first, second))
+                for first, second in perms]
     # append one time every file compared against it self
     # by cutting the content into half
     for x in _list:
