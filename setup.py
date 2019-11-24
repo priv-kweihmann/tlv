@@ -11,6 +11,10 @@ try:
 except (subprocess.CalledProcessError, FileNotFoundError):
     pass
 
+requirements = []
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 setuptools.setup(
     name="tlv",
     version="1.0.0",
@@ -21,9 +25,7 @@ setuptools.setup(
     long_description_content_type=_long_description_content_type,
     url="https://github.com/priv-kweihmann/tlv",
     packages=setuptools.find_packages(),
-    install_requires=[
-        'Pygments>=2.4.2',
-    ],
+    install_requires=requirements,
     scripts=['bin/tlv'],
     classifiers=[
         "Development Status :: 4 - Beta",
