@@ -4,6 +4,7 @@
 [![PyPI version](https://badge.fury.io/py/tlv.svg)](https://badge.fury.io/py/tlv)
 [![Python version](https://img.shields.io/pypi/pyversions/tlv)](https://img.shields.io/pypi/pyversions/tlv)
 [![Downloads](https://img.shields.io/pypi/dm/tlv)](https://img.shields.io/pypi/dm/tlv)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/priv-kweihmann/tlv.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/priv-kweihmann/tlv/context:python)
 
 Too less variation - A tool to discover code duplication in various languages
 
@@ -11,7 +12,7 @@ Too less variation - A tool to discover code duplication in various languages
 
 Code duplication are hard to track across many files.
 There are tools existing like [CPD](https://pmd.github.io/latest/pmd_userdocs_cpd.html) (from PMD) which are doing a great job, but they require JAVA (or even some more obscure language) to run.
-So I decided to write a small tool which uses [Pygments](http://pygments.org/) and python [difflib](https://docs.python.org/3/library/difflib.html) to catch code duplications for many languages as possible
+So I decided to write a small tool which uses [Pygments](http://pygments.org/) and python [difflib](https://docs.python.org/3/library/difflib.html) to catch code duplications for as many languages as possible
 
 ## Requirements
 
