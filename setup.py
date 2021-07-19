@@ -26,7 +26,11 @@ setuptools.setup(
     url="https://github.com/priv-kweihmann/tlv",
     packages=setuptools.find_packages(),
     install_requires=requirements,
-    scripts=['bin/tlv'],
+        entry_points={
+        "console_scripts": [
+            "tlv = tlv.__main__:main",
+        ]
+    },
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Console",
