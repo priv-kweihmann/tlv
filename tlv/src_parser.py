@@ -4,6 +4,7 @@ from copy import deepcopy
 from difflib import SequenceMatcher
 from itertools import permutations
 
+import chardet
 from pygments import lexers
 from pygments.util import ClassNotFound
 
@@ -30,9 +31,11 @@ def parse(args):
             except ClassNotFound:
                 continue
         debug(args, "Reading {}".format(f))
-        with open(f) as i:
+        with open(f, "rb") as i:
             try:
                 content = i.read()
+                _enc = chardet.detect(content)
+                content = content.decode(_enc["encoding"]).encode("utf-8")
                 _ast = TLVAst(f)
                 res.append(_ast)
                 for x in _lexer.get_tokens(content):
