@@ -1,2 +1,2 @@
-Pygments>=2.4.2
-chardet>=3.0.0
+Pygments == 2.13.0
+chardet == 5.0.0
