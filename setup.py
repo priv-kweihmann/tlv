@@ -21,7 +21,7 @@ setuptools.setup(
         entry_points={
         "console_scripts": [
             "tlv = tlv.__main__:main",
-        ]
+        ],
     },
     classifiers=[
         "Development Status :: 4 - Beta",

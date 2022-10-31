@@ -69,5 +69,5 @@ TOKENS = [
     "Token.Generic.Strong",
     "Token.Generic.Subheading",
     "Token.Generic.Traceback",
-    "Token.Text.Whitespace"
+    "Token.Text.Whitespace",
 ]

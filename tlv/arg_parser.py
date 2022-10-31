@@ -1,7 +1,8 @@
 import argparse
 import os
-from tlv.tokens import TOKENS
+
 from tlv.lexer import LEXERS
+from tlv.tokens import TOKENS
 
 RUNARGS = None
 
@@ -29,7 +30,7 @@ def ArgParser():
                             "Token.Literal.Number.Integer.Long",
                             "Token.Literal.Number.Oct",
                             "Token.Text",
-                            "Token.Whitespace"
+                            "Token.Whitespace",
                         ],
                         help="Token types that are threated as wildcards (actual value doesn't matter)")
     parser.add_argument("--verbose", default=False,

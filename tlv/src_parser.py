@@ -24,13 +24,13 @@ def parse(args):
             try:
                 _lexer = lexers.get_lexer_by_name(args.lexer)
             except ClassNotFound:
-                die(-1, "Lexer '{}' isn't available can't proceed".format(args.lexer))
+                die(-1, "Lexer '{lex}' isn't available can't proceed".format(lex=args.lexer))
         else:
             try:
                 _lexer = lexers.get_lexer_for_filename(f)
             except ClassNotFound:
                 continue
-        debug(args, "Reading {}".format(f))
+        debug(args, "Reading {f}".format(f=f))
         with open(f, "rb") as i:
             try:
                 content = i.read()
@@ -40,8 +40,6 @@ def parse(args):
                 res.append(_ast)
                 for x in _lexer.get_tokens(content):
                     _type, _value = x
-                    # TODO: If last object was same type and of ??? -> skip it
-                    # -> modify last element and add one of the current type
                     if str(_type) in args.wildcard_token:
                         _ast.Processed.append((_type, ""))
                     else:
@@ -54,8 +52,8 @@ def parse(args):
 
 def __evaluate(args, first, second):
     findings = []
-    debug(args, "Comparing {}<>{}".format(os.path.basename(
-        first.Filename), os.path.basename(second.Filename)))
+    debug(args, "Comparing {a}<>{b}".format(a=os.path.basename(
+        first.Filename), b=os.path.basename(second.Filename)))
     m = SequenceMatcher(None, first.Processed,
                         second.Processed).get_matching_blocks()
     for _m in m:
@@ -67,11 +65,11 @@ def __evaluate(args, first, second):
 
 
 def validate(args, _list):
-    perms = permutations([x for x in _list], 2)
+    perms = permutations(_list, 2)
     results = []
     with mp.Pool(processes=args.jobs) as pool:
         results = [pool.apply(__evaluate, args=(args, first, second))
-                for first, second in perms]
+                   for first, second in perms]
     # append one time every file compared against it self
     # by cutting the content into half
     for x in _list:
@@ -87,4 +85,4 @@ def validate(args, _list):
             _x2.Processed = _x2.Processed[chop_point:]
             _x2.LineOffset = _line_offset
             results.append(__evaluate(args, _x1, _x2))
-    return list(set([item for sublist in results for item in sublist]))
+    return list(set([item for sublist in results for item in sublist]))  # noqa: C403
