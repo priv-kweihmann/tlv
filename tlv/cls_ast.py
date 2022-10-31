@@ -37,11 +37,11 @@ class TLVFinding(object):
 
     def PrintDetails(self, args):
         if args.details:
-            print(">>> {}".format(self.text_this.replace(
+            print(">>> {snip}".format(snip=self.text_this.replace(
                 os.linesep, os.linesep + ">>> ")))
             print("<<<")
             if self.id == TLVFinding.ID_TLV:
-                print(">>> {}".format(self.text_other.replace(
+                print(">>> {snip}".format(snip=self.text_other.replace(
                     os.linesep, os.linesep + ">>> ")))
                 print("<<<")
 
@@ -66,7 +66,7 @@ class TLVFinding(object):
             path = os.path.relpath(self.file_other, self.file_this)
         else:
             path = "same file"
-        return "{}:{}:{}:[{}]:Block till {}:{} {} as in {} from {}:{} till {}:{}".format(self.file_this,
+        return "{}:{}:{}:[{}]:Block till {}:{} {} as in {} from {}:{} till {}:{}".format(self.file_this,  # noqa: P101
                                                                                          self.file_this_start_line,
                                                                                          self.file_this_start_col,
                                                                                          self.id,

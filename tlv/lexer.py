@@ -602,5 +602,5 @@ LEXERS = [
     "xten",
     "xtend",
     "yaml",
-    "yaml+jinja"
+    "yaml+jinja",
 ]
