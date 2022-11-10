@@ -48,7 +48,7 @@ jobs:
         do_release=0
         do_bump=0
         [ "${{ steps.code-changes.outputs.relevant-for-release == 'true' }}" = "true" ] && do_release=1
-        [ "${{ steps.code-changes.outputs.manual-bumped-version != 'true' }}" = "true" ] && do_bump=1
+        [ "${{ steps.code-changes.outputs.manual-bumped-version != 'true' }}" = "true" ] && [ $do_release -eq 1 ] && do_bump=1
         [ "${{ github.event_name == 'workflow_dispatch' }}" = "true" ] && do_release=1 && do_bump=1
 
         if [ $do_bump -eq 1 ]; then
