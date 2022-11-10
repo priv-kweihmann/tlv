@@ -84,6 +84,8 @@ jobs:
     - name: Commit new version
       if: steps.release-needed.outputs.DO_BUMP == 'true'
       uses: actions-x/commit@v6
+      with:
+        message: 'Release ${{ steps.version-bump.outputs.new_version }}'
 
     - name: Create new release
       if: steps.release-needed.outputs.DO_RELEASE == 'true'
