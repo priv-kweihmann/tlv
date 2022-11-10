@@ -9,7 +9,7 @@ on:
 env:
   VERSION_FILE: setup.py
   MODULE_CODE: tlv/*
-  PYPI_PUBLISH: 0
+  PYPI_PUBLISH: 1
 
 jobs:
   release:
