@@ -5,6 +5,11 @@ on:
     branches:
       - "master"
   workflow_dispatch:
+    inputs:
+      bump-version:
+        description: 'Automatically increase patch version (true|false)'
+        default: 'true'
+        required: false
 
 env:
   VERSION_FILE: setup.py
@@ -49,7 +54,10 @@ jobs:
         do_bump=0
         [ "${{ steps.code-changes.outputs.relevant-for-release == 'true' }}" = "true" ] && do_release=1
         [ "${{ steps.code-changes.outputs.manual-bumped-version != 'true' }}" = "true" ] && [ $do_release -eq 1 ] && do_bump=1
-        [ "${{ github.event_name == 'workflow_dispatch' }}" = "true" ] && do_release=1 && do_bump=1
+        if [ "${{ github.event_name == 'workflow_dispatch' }}" = "true" ]; then
+          do_release=1
+          [ "${{ github.inputs.bump-version }}" = "true" ] && do_bump=1
+        fi
 
         if [ $do_bump -eq 1 ]; then
           echo DO_BUMP=true >> $GITHUB_OUTPUT
