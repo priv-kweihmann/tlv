@@ -24,4 +24,4 @@ flake8-quotes == 3.3.1
 flake8-requirements == 1.7.5
 flake8-string-format == 0.3.0
 flake8-variables-names == 0.0.5
-twine == 4.0.1
+twine == 4.0.2
