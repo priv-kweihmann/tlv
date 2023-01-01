@@ -4,7 +4,6 @@
 [![PyPI version](https://badge.fury.io/py/tlv.svg)](https://badge.fury.io/py/tlv)
 [![Python version](https://img.shields.io/pypi/pyversions/tlv)](https://img.shields.io/pypi/pyversions/tlv)
 [![Downloads](https://img.shields.io/pypi/dm/tlv)](https://img.shields.io/pypi/dm/tlv)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/priv-kweihmann/tlv.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/priv-kweihmann/tlv/context:python)
 
 Too less variation - A tool to discover code duplication in various languages
 
