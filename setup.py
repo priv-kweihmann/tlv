@@ -35,8 +35,9 @@ setuptools.setup(
         "Programming Language :: Python :: 3.9",
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         "Programming Language :: Python :: 3",
         "Topic :: Software Development :: Quality Assurance",
     ],
-    python_requires='>=3.7',
+    python_requires='>=3.8',
 )
