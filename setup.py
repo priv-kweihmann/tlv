@@ -9,7 +9,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
     name="tlv",
-    version="1.5.0",
+    version="1.5.1",
     author="Konrad Weihmann",
     author_email="kweihmann@outlook.com",
     description="-- Too less variation -- Find duplicates in source code for various languages",
