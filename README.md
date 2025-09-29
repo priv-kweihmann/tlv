@@ -5,7 +5,7 @@
 [![Python version](https://img.shields.io/pypi/pyversions/tlv)](https://img.shields.io/pypi/pyversions/tlv)
 [![Downloads](https://img.shields.io/pypi/dm/tlv)](https://img.shields.io/pypi/dm/tlv)
 
-Too less variation - A tool to discover code duplication in various languages
+Too little variation - A tool to discover code duplication in various languages
 
 ## Purpose
 
@@ -30,10 +30,8 @@ pip3 install tlv
 
 ### From source
 
-* Install the needed requirements by running ```pip3 install Pygments```
-* git clone this repository
-* cd to \<clone folder\>
-* run ```sudo ./build.sh```
+* clone the repository
+* from the clone directory run ```pip3 install .```
 
 ## Usage
 

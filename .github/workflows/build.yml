@@ -1,4 +1,4 @@
-name: Build
+name: Python package
 
 on: 
   push:
@@ -8,12 +8,11 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
       matrix:
-        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
+        python-version:  ['3.9', '3.10', '3.11', '3.12', '3.13']
 
     steps:
     - uses: actions/checkout@v5
@@ -21,14 +20,22 @@ jobs:
       uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+        cache: 'pip'
+    - name: prepare
       run: |
-        python -m pip install --upgrade pip build
-        pip install -r requirements.txt
-        pip install -r requirements-dev.txt
-    - name: Lint with flake8
+        python3 -m pip install --upgrade pip
+        pip install .[dev]
+    - name: linter (flake8)
       run: flake8
-    - name: Build
+    - name: test
+      run: |
+        ./test.sh
+    - name: build
       run: python3 -m build --sdist --wheel
-    - name: Test
-      run: ./test.sh
+    - name: install
+      run: python3 -m pip install --user dist/*.whl
+    - name: test (installed)
+      run: |
+        tlv --help
+        tar -tvf dist/tlv-*.tar.gz | grep LICENSE
+        tar -tvf dist/tlv-*.tar.gz | grep README.md
