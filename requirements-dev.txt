@@ -23,4 +23,4 @@ flake8-quotes == 3.4.0
 flake8-requirements == 2.3.0
 flake8-variables-names == 0.0.6
 twine == 6.2.0
-wheel ~= 0.45
+wheel ~= 0.46
