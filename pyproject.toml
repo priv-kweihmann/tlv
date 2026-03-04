@@ -70,7 +70,7 @@ classifiers = [
 ]
 dependencies = [
   "Pygments ~= 2.19",
-  "chardet >= 5.2,< 7.0",
+  "chardet >= 5.2,< 8.0",
 ]
 dynamic = ["optional-dependencies"]
 
